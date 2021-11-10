@@ -7,7 +7,7 @@ from pathlib import Path
 import flask_unittest
 from unittest.mock import patch
 
-from weave_grid import create_app
+from app import create_app
 
 class TestFiles(flask_unittest.ClientTestCase):
     """

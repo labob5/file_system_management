@@ -1,4 +1,4 @@
-# Welcome to my Weave Grid coding exercise!
+# Welcome to my file system management project!
 
 This app provides a simple RESTful API that can be used to get more information about the host file system.
 
@@ -46,7 +46,7 @@ More detailed specs can be found in the swagger.yaml file in this repo.
 2. The naming of the `/directories/:directory_path/files` is a little weird given that it returns both files and directories. Also the schema between a file object in `files/:file_path` and `/directories/:directory_path/files` is inconsistent.
 3. I could have much more comprehensive testing on both endpoints. Testing subdirectories, many files returned in the list view, differing permissions and owners.
 4. If I had more time, I would have set up a linter to lint my files. I tried my best to keep good style but a linter would catch some ugly style.
-5. All the endpoints are stuffed within the `weave_grid\__init__.py` file along with the create app logic. Ideally, I would want to separate the instantiation of the app from endpoint logic. This is ok for this project because my app is very small but would quickly grow out of control. 
+5. All the endpoints are stuffed within the `app\__init__.py` file along with the create app logic. Ideally, I would want to separate the instantiation of the app from endpoint logic. This is ok for this project because my app is very small but would quickly grow out of control. 
 
 ## Total time spent
 I probably spent around 10 hours in total on this assignment. Since I was new to Docker, I spent a solid amount of time (maybe 3-4 hours) debugging issues that came up / learning more about Docker. Even then I wasn't able to get to the bottom of the issue I was experiencing :(. 
