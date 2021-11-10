@@ -1,0 +1,100 @@
+openapi: 3.0.0
+info:
+  title: File System API
+  description: API used to get information about the host's file system.
+  version: 1.0.0
+paths:
+  /directories/{directoryPath}/files:
+    get:
+      parameters:
+      - name: directoryPath
+        in: path
+        required: true
+        description: The relative path to the directory.
+        schema:
+          type: string
+      summary: Returns a list of files and directories under the specified directory. 
+      responses:
+        '200': 
+          description: A JSON object containing an array of files directories.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  files:
+                    type: array
+                    items: 
+                      type: object
+                      properties:
+                        file_name:
+                          type: string
+                          description: Base file name or directory names. Directories will be denoted by a trailing /. 
+                          example: cat.txt
+                        owner:
+                          type: string
+                          description: file/directory owner's username
+                          example: root
+                        permissions:
+                          type: string
+                          description: octal representation of file/directory's permissions
+                          example: '33152'
+                        size:
+                          type: number
+                          description: the file/directory size in bytes
+        '400':
+          description: Bad request error. Path provided is a file and not a directory.
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "cat.txt is a file not a directory."
+                
+        '404':
+          description: Directory not found.
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Directory cat/dog does not exist."
+          
+        
+            
+  /files/{filePath}:
+    get:
+      parameters:
+      - name: filePath
+        in: path
+        required: true
+        description: The relative path to the file.
+        schema:
+          type: string
+      summary: Returns the contents of the specified file.
+      responses:
+        '200': 
+          description: A JSON array of files
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contents:
+                    type: string
+                    description: "File content"
+                    example: "The cat jumped over the dog."
+                    
+        '400':
+          description: Bad request error. Path provided is a directory not a file.
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "dog is a directory not a file."
+                
+        '404':
+          description: File not found.
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "File cat.txt does not exist."
